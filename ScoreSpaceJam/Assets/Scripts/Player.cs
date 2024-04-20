@@ -58,14 +58,26 @@ public class Player : MonoBehaviour
             Instantiate(projectile, transform.position, Quaternion.identity);
         }
 
+        if (Input.GetKeyDown(KeyCode.W))
+        {
+            animator.SetTrigger("walking");
+        }
+        
         if (Input.GetKeyDown(KeyCode.A))
         {
             animator.SetTrigger("walking");
         }
-        else
+        
+        if (Input.GetKeyDown(KeyCode.S))
         {
-            animator.SetTrigger("standing");
+            animator.SetTrigger("walking");
         }
+        
+        if (Input.GetKeyDown(KeyCode.D))
+        {
+            animator.SetTrigger("walking");
+        }
+        
     }
 
     // Update is called once per frame
