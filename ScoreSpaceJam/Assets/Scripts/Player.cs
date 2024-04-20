@@ -25,6 +25,9 @@ public class Player : MonoBehaviour
     [SerializeField]
     private uint health = 10;
 
+    [SerializeField]
+    private GameObject projectile;
+
     // Properties
     public uint Health
     {
@@ -50,6 +53,8 @@ public class Player : MonoBehaviour
         if (Input.GetMouseButtonDown(0))
         {
             Debug.Log("Pew pew");
+            GameObject newProjectile = Instantiate(projectile, transform.position, Quaternion.identity);
+            //newProjectile.Direction
         }
     }
 }

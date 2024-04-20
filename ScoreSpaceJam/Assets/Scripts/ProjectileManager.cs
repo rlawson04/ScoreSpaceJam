@@ -4,6 +4,20 @@ using UnityEngine;
 
 public class ProjectileManager : MonoBehaviour
 {
+    public static ProjectileManager instance;
+
+    private void Awake()
+    {
+        if (instance != null && instance != this)
+        {
+            Destroy(this.gameObject);
+        }
+        else
+        {
+            instance = this;
+        }
+    }
+
     [SerializeField]
     private List<GameObject> projectiles = new List<GameObject>();
 
