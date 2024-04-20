@@ -10964,7 +10964,7 @@ Tilemap:
     e31: 0
     e32: 0
     e33: 1
---- !u!1001 &8178912873302947115
+--- !u!1001 &1641654469
 PrefabInstance:
   m_ObjectHideFlags: 0
   serializedVersion: 2
@@ -10973,7 +10973,7 @@ PrefabInstance:
     m_TransformParent: {fileID: 0}
     m_Modifications:
     - target: {fileID: 1644423437730587026, guid: 9362a9a98ea66184098641879d6f071c, type: 3}
-      propertyPath: m_CollisionDetection
+      propertyPath: m_BodyType
       value: 0
       objectReference: {fileID: 0}
     - target: {fileID: 3676002889463159101, guid: 9362a9a98ea66184098641879d6f071c, type: 3}
