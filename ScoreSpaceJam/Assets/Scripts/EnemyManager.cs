@@ -19,7 +19,22 @@ public class EnemyManager : MonoBehaviour
     }
 
     // Fields
+    [SerializeField] 
+    private GameObject enemyPrefab;
+
+    [SerializeField]
+    private GameObject nextRoom;
+
+    [SerializeField]
+    private int totalNumberEnemies = 5;
+
+    
+    int numberSpawned;
+    float theta;
+
+
     List<Enemy> enemyList = new List<Enemy>();
+    
 
     // Property
     public List<Enemy> EnemyList
@@ -28,22 +43,34 @@ public class EnemyManager : MonoBehaviour
         set { enemyList = value; }
     }
 
-    // Start is called before the first frame update
+    // Methods
     void Start()
     {
-        
+
     }
 
     // Update is called once per frame
     void Update()
     {
-        
+        if (numberSpawned < totalNumberEnemies)
+        {
+            for (int i = 0; i < totalNumberEnemies; i++)
+            {
+                Vector3 vector3 = new Vector3(1f * i, 1f * i, 0);
+                MakeEnemy(vector3);
+                numberSpawned++;
+            }
+        }
+        if (numberSpawned == totalNumberEnemies && enemyList.Count == 0)
+        {
+            nextRoom.SetActive(true);
+        }
     }
 
-    public void MakeEnemy()
+    public void MakeEnemy(Vector2 position)
     {
         Enemy enemy = new Enemy();
-
+        Instantiate(enemyPrefab, transform.position * position, Quaternion.identity);
         enemyList.Add(enemy);
     }
 
@@ -52,4 +79,5 @@ public class EnemyManager : MonoBehaviour
         Destroy(enemy);
         enemyList.Remove(enemy);
     }
+
 }

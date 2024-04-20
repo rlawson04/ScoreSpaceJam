@@ -12,11 +12,10 @@ public class Enemy : MonoBehaviour
     // Start is called before the first frame update
     void Start()
     {
-        EnemyManager.instance.MakeEnemy();
         health = 10;
         speed = 1;
         damage = 10;
-        range = 5;
+        range = 10;
     }
 
     // Update is called once per frame
