@@ -11,13 +11,20 @@ public class Punch : MonoBehaviour
     [SerializeField] private LayerMask enemyLayers;
     [SerializeField] private uint attackDamage = 5;
 
+    [SerializeField] private float attackRate = 2f;
+    float nextAttackTime = 0f;
+
     // Update is called once per frame
     void Update()
     {
-        if (Input.GetKeyDown(KeyCode.Space))
+        if(Time.time >= nextAttackTime)
         {
-            Attack();
-        }    
+            if (Input.GetKeyDown(KeyCode.Space))
+            {
+                Attack();
+                nextAttackTime = Time.time + 1f / attackRate;
+            }
+        }
     }
 
     void Attack()

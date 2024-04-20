@@ -30,6 +30,7 @@ public class EnemyManager : MonoBehaviour
 
     
     int numberSpawned;
+    int numberKilled;
     float theta;
 
 
@@ -56,7 +57,7 @@ public class EnemyManager : MonoBehaviour
         {
             for (int i = 0; i < totalNumberEnemies; i++)
             {
-                Vector3 vector3 = new Vector3(1f * i, 1f * i, 0);
+                Vector3 vector3 = new Vector3(2f * i, 2f * i, 0);
                 MakeEnemy(vector3);
                 numberSpawned++;
             }
@@ -64,6 +65,10 @@ public class EnemyManager : MonoBehaviour
         if (numberSpawned == totalNumberEnemies && enemyList.Count == 0)
         {
             nextRoom.SetActive(true);
+        }
+        if(numberKilled == numberSpawned)
+        {
+            enemyList.Clear();
         }
     }
 
@@ -76,8 +81,8 @@ public class EnemyManager : MonoBehaviour
 
     public void RemoveEnemy(Enemy enemy)
     {
-        Destroy(enemy);
         enemyList.Remove(enemy);
+        numberKilled++;
     }
 
 }
