@@ -58,7 +58,17 @@ public class Player : MonoBehaviour
             Instantiate(projectile, transform.position, Quaternion.identity);
         }
 
-        if (Input.GetKeyDown(KeyCode.A))
+        if (Input.GetKey(KeyCode.A))
+        {
+            animator.SetTrigger("walking");
+            transform.localScale = new Vector3(-1.677228f, 1.677228f, 1.677228f);
+        }
+        if (Input.GetKey(KeyCode.D))
+        {
+            animator.SetTrigger("walking");
+            transform.localScale = new Vector3(1.677228f, 1.677228f, 1.677228f);
+        }
+        if (Input.GetKey(KeyCode.W) || Input.GetKey(KeyCode.S))
         {
             animator.SetTrigger("walking");
         }
