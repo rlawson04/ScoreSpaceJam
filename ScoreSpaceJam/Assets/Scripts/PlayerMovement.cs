@@ -7,6 +7,9 @@ public class PlayerMovement : MonoBehaviour
     [SerializeField]
     private float moveSpeed = 5f;
 
+    [SerializeField]
+    private GameObject mainCamera;
+
     // Start is called before the first frame update
     void Start()
     {
