@@ -43,12 +43,6 @@ public class Player : MonoBehaviour
         set { health = value; }
     }
 
-    // Start is called before the first frame update
-    void Start()
-    {
- 
-    }
-
     private void Update()
     {
         GetInput();

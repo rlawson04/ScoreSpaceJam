@@ -47,20 +47,21 @@ public class EnemyManager : MonoBehaviour
             if(enemy == null)
             {
                 RemoveEnemy(enemy);
-                Debug.Log("Enemy Killed " + enemy.name);
             }
-            if (enemyList.Count == 0)
+            else
             {
-                currentRoom.SetActive(false);
+                return;
             }
-        }
-        if (numberSpawned == totalNumberEnemies && enemyList.Count == 0)
-        {
-            nextRoom.SetActive(true);
+            
         }
         if(numberKilled == numberSpawned)
         {
             enemyList.Clear();
+        }
+        if (enemyList.Count == 0)
+        {
+            nextRoom.SetActive(true);
+            Destroy(currentRoom);
         }
     }
 
