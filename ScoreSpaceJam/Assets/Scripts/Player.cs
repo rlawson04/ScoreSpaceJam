@@ -49,6 +49,11 @@ public class Player : MonoBehaviour
     private void Update()
     {
         GetInput();
+
+        if (Input.GetMouseButtonDown(0))
+        {
+            Instantiate(projectile, transform.position, Quaternion.identity);
+        }
     }
 
     // Update is called once per frame

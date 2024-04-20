@@ -19,7 +19,7 @@ public class ProjectileManager : MonoBehaviour
     }
 
     [SerializeField]
-    private List<GameObject> projectiles = new List<GameObject>();
+    private List<Projectile> projectiles = new List<Projectile>();
 
     // Start is called before the first frame update
     void Start()
