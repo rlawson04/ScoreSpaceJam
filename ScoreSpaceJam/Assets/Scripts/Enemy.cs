@@ -37,6 +37,5 @@ public class Enemy : MonoBehaviour
     public void TakeDamage(uint damage)
     {
         health -= damage;
-        Debug.Log("Took Damage");
     }
 }
