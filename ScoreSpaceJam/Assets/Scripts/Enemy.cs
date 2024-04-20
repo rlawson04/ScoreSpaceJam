@@ -14,7 +14,7 @@ public class Enemy : MonoBehaviour
     {
         health = 10;
         speed = 1;
-        damage = 10;
+        damage = 2;
         range = 10;
     }
 
@@ -28,9 +28,8 @@ public class Enemy : MonoBehaviour
             transform.position = Vector2.MoveTowards(transform.position, Player.instance.transform.position, speed * Time.deltaTime);
         }
 
-        if(health <= 0)
+        if(health <= 0 )
         {
-            EnemyManager.instance.RemoveEnemy(this);
             Destroy(gameObject);
         }
     }
@@ -38,5 +37,6 @@ public class Enemy : MonoBehaviour
     public void TakeDamage(uint damage)
     {
         health -= damage;
+        Debug.Log("Took Damage");
     }
 }

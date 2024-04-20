@@ -4,50 +4,31 @@ using UnityEngine;
 
 public class EnemyManager : MonoBehaviour
 {
-    public static EnemyManager instance;
-
-    private void Awake()
-    {
-        if (instance != null && instance != this)
-        {
-            Destroy(this.gameObject);
-        }
-        else
-        {
-            instance = this;
-        }
-    }
-
     // Fields
-    [SerializeField] 
+    [SerializeField]
     private GameObject enemyPrefab;
 
     [SerializeField]
     private GameObject nextRoom;
 
     [SerializeField]
+    private GameObject currentRoom;
+
+    [SerializeField]
     private int totalNumberEnemies = 5;
 
-    
     int numberSpawned;
     int numberKilled;
     float theta;
 
-
-    List<Enemy> enemyList = new List<Enemy>();
+    List<GameObject> enemyList = new List<GameObject>();
     
 
     // Property
-    public List<Enemy> EnemyList
+    public List<GameObject> EnemyList
     {
         get { return enemyList; }
         set { enemyList = value; }
-    }
-
-    // Methods
-    void Start()
-    {
-
     }
 
     // Update is called once per frame
@@ -57,9 +38,20 @@ public class EnemyManager : MonoBehaviour
         {
             for (int i = 0; i < totalNumberEnemies; i++)
             {
-                Vector3 vector3 = new Vector3(2f * i, 2f * i, 0);
-                MakeEnemy(vector3);
+                MakeEnemy();
                 numberSpawned++;
+            }
+        }
+        foreach (GameObject enemy in enemyList)
+        {
+            if(enemy == null)
+            {
+                RemoveEnemy(enemy);
+                Debug.Log("Enemy Killed " + enemy.name);
+            }
+            if (enemyList.Count == 0)
+            {
+                currentRoom.SetActive(false);
             }
         }
         if (numberSpawned == totalNumberEnemies && enemyList.Count == 0)
@@ -72,14 +64,13 @@ public class EnemyManager : MonoBehaviour
         }
     }
 
-    public void MakeEnemy(Vector2 position)
+    public void MakeEnemy()
     {
-        Enemy enemy = new Enemy();
-        Instantiate(enemyPrefab, transform.position * position, Quaternion.identity);
-        enemyList.Add(enemy);
+        enemyPrefab = Instantiate(enemyPrefab, transform.position, Quaternion.identity);
+        enemyList.Add(enemyPrefab);
     }
 
-    public void RemoveEnemy(Enemy enemy)
+    public void RemoveEnemy(GameObject enemy)
     {
         enemyList.Remove(enemy);
         numberKilled++;
