@@ -28,6 +28,11 @@ public class Player : MonoBehaviour
     [SerializeField]
     private GameObject projectile;
 
+    [SerializeField]
+    private Rigidbody2D rb2D;
+
+    Vector2 movement = new Vector2();
+
     // Properties
     public uint Health
     {
@@ -38,23 +43,25 @@ public class Player : MonoBehaviour
     // Start is called before the first frame update
     void Start()
     {
-        
+ 
     }
 
     // Update is called once per frame
-    void Update()
+    void FixedUpdate()
     {
-        // movement
-        Vector3 movement = new Vector3(Input.GetAxis("Horizontal"), Input.GetAxis("Vertical"), 0f);
+        GetInput();
+        MoveCharacter(movement);
+    }
 
-        transform.position += movement * Time.deltaTime * moveSpeed;
+    void GetInput()
+    {
+        movement.x = Input.GetAxis("Horizontal");
+        movement.y = Input.GetAxis("Vertical");
+    }
 
-        // combat
-        if (Input.GetMouseButtonDown(0))
-        {
-            Debug.Log("Pew pew");
-            GameObject newProjectile = Instantiate(projectile, transform.position, Quaternion.identity);
-            //newProjectile.Direction
-        }
+    public void MoveCharacter(Vector2 movementVector)
+    {
+        movementVector.Normalize();
+        rb2D.velocity = movementVector * moveSpeed;
     }
 }
