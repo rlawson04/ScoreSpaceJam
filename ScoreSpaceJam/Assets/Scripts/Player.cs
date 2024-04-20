@@ -31,6 +31,9 @@ public class Player : MonoBehaviour
     [SerializeField]
     private Rigidbody2D rb2D;
 
+    [SerializeField]
+    private Animator animator;
+
     Vector2 movement = new Vector2();
 
     // Properties
@@ -54,6 +57,15 @@ public class Player : MonoBehaviour
         {
             Instantiate(projectile, transform.position, Quaternion.identity);
         }
+
+        if (Input.GetKeyDown(KeyCode.A))
+        {
+            animator.SetTrigger("walking");
+        }
+        else
+        {
+            animator.SetTrigger("standing");
+        }
     }
 
     // Update is called once per frame
@@ -61,6 +73,7 @@ public class Player : MonoBehaviour
     {
         //MoveCharacter(movement);
         rb2D.MovePosition(rb2D.position + movement * moveSpeed * Time.fixedDeltaTime);
+        
     }
 
     void GetInput()
@@ -73,5 +86,6 @@ public class Player : MonoBehaviour
     {
         movementVector.Normalize();
         rb2D.velocity = movementVector * moveSpeed * Time.deltaTime;
+        
     }
 }
