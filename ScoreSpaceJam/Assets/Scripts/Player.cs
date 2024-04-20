@@ -63,26 +63,19 @@ public class Player : MonoBehaviour
             animator.SetTrigger("walking");
             transform.localScale = new Vector3(-1.677228f, 1.677228f, 1.677228f);
         }
-        if (Input.GetKey(KeyCode.D))
+        else if (Input.GetKey(KeyCode.D))
         {
             animator.SetTrigger("walking");
             transform.localScale = new Vector3(1.677228f, 1.677228f, 1.677228f);
         }
-        if (Input.GetKey(KeyCode.W) || Input.GetKey(KeyCode.S))
+        else if (Input.GetKey(KeyCode.W) || Input.GetKey(KeyCode.S))
         {
             animator.SetTrigger("walking");
         }
-        
-        if (Input.GetKeyDown(KeyCode.S))
+        else
         {
-            animator.SetTrigger("walking");
+            animator.SetTrigger("standing");
         }
-        
-        if (Input.GetKeyDown(KeyCode.D))
-        {
-            animator.SetTrigger("walking");
-        }
-        
     }
 
     // Update is called once per frame
