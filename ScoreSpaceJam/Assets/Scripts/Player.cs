@@ -20,7 +20,7 @@ public class Player : MonoBehaviour
 
     // Feilds
     [SerializeField]
-    private float moveSpeed = 5f;
+    private float moveSpeed = 10f;
 
     [SerializeField]
     private uint health = 10;
@@ -46,11 +46,16 @@ public class Player : MonoBehaviour
  
     }
 
+    private void Update()
+    {
+        GetInput();
+    }
+
     // Update is called once per frame
     void FixedUpdate()
     {
-        GetInput();
-        MoveCharacter(movement);
+        //MoveCharacter(movement);
+        rb2D.MovePosition(rb2D.position + movement * moveSpeed * Time.fixedDeltaTime);
     }
 
     void GetInput()
@@ -62,6 +67,6 @@ public class Player : MonoBehaviour
     public void MoveCharacter(Vector2 movementVector)
     {
         movementVector.Normalize();
-        rb2D.velocity = movementVector * moveSpeed;
+        rb2D.velocity = movementVector * moveSpeed * Time.deltaTime;
     }
 }
