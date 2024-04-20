@@ -29,19 +29,60 @@ public class Projectile : MonoBehaviour
         set { direction = value; }
     }
 
+    public float DistanceTravelled
+    {
+        get { return distanceTravelled; }
+        set { distanceTravelled = value; }
+    }
+
+    public float Speed
+    {
+        get { return speed; }
+        set { speed = value; }
+    }
+
+    public float Range
+    {
+        get { return range; }
+        set { range = value; }
+    }
+
+    public uint Damage
+    {
+        get { return damage; }
+        set { damage = value; }
+    }
+
+    public bool Friendly
+    {
+        get { return friendly; }
+        set { friendly = value; }
+    }
+
     // Start is called before the first frame update
     void Start()
     {
-
+        // ignore collision with player
+        Physics2D.IgnoreCollision(Player.instance.GetComponent<Collider2D>(), GetComponent<Collider2D>());
     }
 
     // Update is called once per frame
     void Update()
-    {
+    {/*
         if (distanceTravelled <= range)
         {
             transform.position += Vector3.ClampMagnitude(direction, 1f) * Time.deltaTime * speed;
             distanceTravelled += Time.deltaTime * speed;
+        }*/
+    }
+    private void OnCollisionEnter2D(Collision2D collision)
+    {
+        if (collision.gameObject.tag == "Enemy")
+        {
+            Destroy(gameObject);
+            ProjectileManager.instance.Projectiles.Remove(this);
+            collision.gameObject.GetComponent<Enemy>().TakeDamage(damage);
+            Debug.Log(collision.gameObject.name + " has been hit!");
         }
     }
 }
