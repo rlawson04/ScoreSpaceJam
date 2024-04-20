@@ -4,7 +4,7 @@ using UnityEngine;
 
 public class Enemy : MonoBehaviour
 {
-    uint health;
+    [SerializeField] uint health;
     float speed;
     uint damage;
     float range;
@@ -32,5 +32,10 @@ public class Enemy : MonoBehaviour
         {
             EnemyManager.instance.RemoveEnemy(this);
         }
+    }
+
+    public void TakeDamage(uint damage)
+    {
+        health -= damage;
     }
 }

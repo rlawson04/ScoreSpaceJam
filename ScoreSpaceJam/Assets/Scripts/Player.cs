@@ -72,10 +72,17 @@ public class Player : MonoBehaviour
         {
             animator.SetTrigger("walking");
         }
-        else
+        
+        if (Input.GetKeyDown(KeyCode.S))
         {
-            animator.SetTrigger("standing");
+            animator.SetTrigger("walking");
         }
+        
+        if (Input.GetKeyDown(KeyCode.D))
+        {
+            animator.SetTrigger("walking");
+        }
+        
     }
 
     // Update is called once per frame
