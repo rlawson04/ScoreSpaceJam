@@ -16,7 +16,6 @@ public class Enemy : MonoBehaviour
     float nextAttackTime;
 
     float speed;
-    int damage;
     float detectionRange;
     
     // Start is called before the first frame update
@@ -24,7 +23,6 @@ public class Enemy : MonoBehaviour
     {
         health = 10;
         speed = 1;
-        damage = 2;
         detectionRange = 10;
         attackRange = 0.25f;
         attackDamage = 5;

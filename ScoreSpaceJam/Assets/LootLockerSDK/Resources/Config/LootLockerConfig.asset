@@ -12,20 +12,20 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 182cd195a28310e479cddf7ff82822f8, type: 3}
   m_Name: LootLockerConfig
   m_EditorClassIdentifier: 
-  apiKey: 
+  apiKey: dev_0d95d09759544b4ab5fa35d660b16320
   token: 
-  adminToken: 
+  adminToken: 89594b6e790386774e922c9594cafbda0ed636c3
   refreshToken: 
-  domainKey: 
+  domainKey: nsah5oee
   gameID: 0
   game_version: 1.0.0.0
-  sdk_version: 
+  sdk_version: 2.1.5
   deviceID: defaultPlayerId
   url: https://api.lootlocker.io/v1
-  adminUrl: https://api.lootlocker.io/admin
-  playerUrl: https://api.lootlocker.io/player
-  userUrl: https://api.lootlocker.io/game
-  baseUrl: https://api.lootlocker.io
+  adminUrl: https://nsah5oee.api.lootlocker.io/admin
+  playerUrl: https://nsah5oee.api.lootlocker.io/player
+  userUrl: https://nsah5oee.api.lootlocker.io/game
+  baseUrl: https://nsah5oee.api.lootlocker.io
   clientSideRequestTimeOut: 180
-  currentDebugLevel: 0
+  currentDebugLevel: 3
   allowTokenRefresh: 1
