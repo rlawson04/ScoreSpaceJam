@@ -23,10 +23,10 @@ public class Player : MonoBehaviour
     private float moveSpeed = 10f;
 
     [SerializeField]
-    private uint health = 100;
+    private int health = 100;
 
     [SerializeField]
-    private uint attackDamage = 5;
+    private int attackDamage = 5;
 
     [SerializeField]
     private GameObject projectile;
@@ -37,16 +37,19 @@ public class Player : MonoBehaviour
     [SerializeField]
     private Animator animator;
 
+    [SerializeField]
+    private healthbar healthbar;
+
     Vector2 movement = new Vector2();
 
     // Properties
-    public uint Health
+    public int Health
     {
         get { return health; }
         set { health = value; }
     }
 
-    public uint AttackDamage
+    public int AttackDamage
     {
         get { return attackDamage; }
         set { attackDamage = value; }
@@ -55,6 +58,9 @@ public class Player : MonoBehaviour
     private void Update()
     {
         GetInput();
+
+        // Update health bar
+        healthbar.SetHealth(health);
 
         if (Input.GetMouseButtonDown(0))
         {
@@ -103,8 +109,9 @@ public class Player : MonoBehaviour
         rb2D.velocity = movementVector * moveSpeed * Time.deltaTime;
     }
 
-    public void TakeDamage(uint attackDamage)
+    public void TakeDamage(int attackDamage)
     {
         health -= attackDamage;
+        
     }
 }

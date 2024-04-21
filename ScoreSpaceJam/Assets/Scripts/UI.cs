@@ -7,8 +7,8 @@ using TMPro;
 
 public class UI : MonoBehaviour
 {
-    [SerializeField]
-    private TextMeshProUGUI healthText;
+    
+    
 
     // Start is called before the first frame update
     void Start()
@@ -24,6 +24,6 @@ public class UI : MonoBehaviour
 
     void DisplayText()
     {
-        healthText.text = "Health: " + Player.instance.Health + "\nCurrent damage: " + Player.instance.AttackDamage;
+       
     }
 }

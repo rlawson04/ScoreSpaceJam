@@ -8,7 +8,7 @@ public class Projectile : MonoBehaviour
     private float speed = 10f;
 
     [SerializeField]
-    private uint damage = 1;
+    private int damage = 1;
 
     [SerializeField]
     private float range = 10f;
@@ -47,7 +47,7 @@ public class Projectile : MonoBehaviour
         set { range = value; }
     }
 
-    public uint Damage
+    public int Damage
     {
         get { return damage; }
         set { damage = value; }

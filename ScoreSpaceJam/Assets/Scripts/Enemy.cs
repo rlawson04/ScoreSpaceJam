@@ -4,18 +4,18 @@ using UnityEngine;
 
 public class Enemy : MonoBehaviour
 {
-    [SerializeField] uint health;
+    [SerializeField] int health;
     [SerializeField] private Animator animator;
 
     [SerializeField] private float attackRange;
     [SerializeField] private LayerMask playerLayers;
-    private uint attackDamage;
+    private int attackDamage;
 
     [SerializeField] private float attackRate;
     float nextAttackTime;
 
     float speed;
-    uint damage;
+    int damage;
     float detectionRange;
     
     // Start is called before the first frame update
@@ -71,7 +71,7 @@ public class Enemy : MonoBehaviour
         }
     }
 
-    public void TakeDamage(uint damage)
+    public void TakeDamage(int damage)
     {
         // Decrease health when hit by player
         health -= damage;

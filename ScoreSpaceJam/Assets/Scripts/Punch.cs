@@ -9,7 +9,7 @@ public class Punch : MonoBehaviour
     [SerializeField] private Transform attackPoint;
     [SerializeField] private float attackRange = 0.25f;
     [SerializeField] private LayerMask enemyLayers;
-    private uint attackDamage = 5;
+    private int attackDamage = 5;
 
     [SerializeField] private float attackRate = 2f;
     float nextAttackTime = 0f;
