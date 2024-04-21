@@ -3,6 +3,7 @@ using LootLocker.Requests;
 using UnityEngine;
 using TMPro;
 using System.Collections;
+using System.Collections.Generic;
 
 public class LeaderBoardController : MonoBehaviour
 {
@@ -10,37 +11,43 @@ public class LeaderBoardController : MonoBehaviour
     public string leaderboardKey;
     public TextMeshProUGUI playerNames;
     public TextMeshProUGUI playerScores;
+    bool loggedin = false;
 
     private void Start()
     {
-        StartCoroutine(SetupRoutine());
+        LoginRoutine();
     }
 
-    IEnumerator SetupRoutine()
+    private void Update()
     {
-        yield return LoginRoutine();
-        yield return FetchTopHighscoresRoutine();
+        // Fetches the highscores after the login has been completed
+        if (loggedin)
+        {
+            StartCoroutine(FetchTopHighscoresRoutine());
+            loggedin = false;
+        }
     }
 
-    IEnumerator LoginRoutine()
+    // Logs into the loot locker API
+    public void LoginRoutine()
     {
-        bool done = false;
         LootLockerSDKManager.StartGuestSession((response) =>
         {
             if (response.success)
             {
-                Debug.Log("Log in success");
                 PlayerPrefs.SetString("PlayerID", response.player_id.ToString());
+                Debug.Log("Log in success");
+                loggedin = true;
             }
             else
             {
                 Debug.Log("Fail");
-                done = true;
             }
         });
-        yield return new WaitWhile(() => done == false);
+       
     }
 
+    // Pushes the score entered into the loot locker api
     public void SubmitScore()
     {
         LootLockerSDKManager.SubmitScore(MemberID.text, int.Parse(PlayerScore.text), leaderboardKey, (response) =>
@@ -56,6 +63,7 @@ public class LeaderBoardController : MonoBehaviour
         });
     }
 
+    // Grabs the top scores from the loot locker leaderboard and displays them
     IEnumerator FetchTopHighscoresRoutine()
     {
         Debug.Log("starting getting highscores");
@@ -65,7 +73,7 @@ public class LeaderBoardController : MonoBehaviour
         {
             if (response.success)
             {
-                Debug.Log("High scores fetched");
+                Debug.Log("High scores sucess");
                 string tempPlayerNames = "Names\n";
                 string tempPlayerScores = "Scores\n";
 
@@ -73,18 +81,22 @@ public class LeaderBoardController : MonoBehaviour
                 
                 for (int i = 0; i < members.Length; i++)
                 {
-                    tempPlayerNames += members[i].rank + ".";
+                    if (members[i].player != null)
+                    {
+                        tempPlayerNames += members[i].rank + ". ";
 
-                    if (members[i].player.name != "")
-                    {
-                        tempPlayerNames += members[i].player.name;
+                        if (members[i].player.name != "")
+                        {
+                            tempPlayerNames += members[i].player.name;
+                        }
+                        else
+                        {
+                            tempPlayerNames += members[i].player.id;
+                        }
+                        tempPlayerScores += members[i].score + "\n";
+                        tempPlayerNames += "\n";
                     }
-                    else
-                    {
-                        tempPlayerNames += members[i].player.id;
-                    }
-                    tempPlayerScores += members[i].score + "\n";
-                    tempPlayerNames += "\n";
+                    
                 }
                 done = true;
                 playerNames.text = tempPlayerNames;

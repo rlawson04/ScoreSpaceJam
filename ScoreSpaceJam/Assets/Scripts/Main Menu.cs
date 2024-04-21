@@ -14,42 +14,25 @@ public class StartButton : MonoBehaviour
 
     private void Start()
     {
+        // Displays main menu and hides controls
         mainCanvas.SetActive(true);
         controlsCanvas.SetActive(false);
-        
-
     }
 
-    IEnumerator LoginRoutine()
-    {
-        bool done = false;
-        LootLockerSDKManager.StartGuestSession((response) =>
-        {
-            if (response.success)
-            {
-                Debug.Log("Log in success");
-                PlayerPrefs.SetString("PlayerID", response.player_id.ToString());
-            }
-            else
-            {
-                Debug.Log("Fail");
-                done = true;
-            }
-        });
-        yield return new WaitWhile(() => done == false);
-    }
-
+    // Loads scene on button press
     public void StartGame()
     {
         SceneManager.LoadScene(gameScene);
     }
 
+    // Opens menu for controls
     public void OpenControls()
     {
         mainCanvas.SetActive(false);
         controlsCanvas.SetActive(true);
     }
 
+    // Closes menu for controls
     public void CloseControls()
     {
         mainCanvas.SetActive(true);

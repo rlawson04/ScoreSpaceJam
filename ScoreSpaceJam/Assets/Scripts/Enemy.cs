@@ -34,8 +34,10 @@ public class Enemy : MonoBehaviour
     // Update is called once per frame
     void Update()
     {
+        // Distance between player and enemy
         float distance = Vector2.Distance(Player.instance.transform.position, transform.position);
 
+        // Sets the health bar to the enemy's current health
         healthbar.SetHealth(health);
 
         // Moves towards player if player is within enemy detection range
@@ -44,6 +46,7 @@ public class Enemy : MonoBehaviour
             transform.position = Vector2.MoveTowards(transform.position, Player.instance.transform.position, speed * Time.deltaTime);
         }
 
+        // Attacks the player when withing a short range
         if (distance < attackRange)
         {
             if (Time.time >= nextAttackTime)
@@ -54,6 +57,7 @@ public class Enemy : MonoBehaviour
             }
         }
 
+        // When the enemy dies, the object is destroyed and the player is slightly healed
         if (health <= 0)
         {
             Destroy(gameObject);
@@ -67,7 +71,7 @@ public class Enemy : MonoBehaviour
                 }
                 else
                 {
-                    Player.instance.Health += 5;
+                    Player.instance.Health += 2;
                 }
             }
         }

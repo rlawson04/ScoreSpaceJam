@@ -10,6 +10,7 @@ public class healthbar : MonoBehaviour
     [SerializeField] private Gradient gradient;
     [SerializeField] private Image fill;
 
+    // Puts the max value of the health bar and sets the color to green
     public void SetMaxHealth(int health)
     {
         slider.maxValue = health;
@@ -18,6 +19,7 @@ public class healthbar : MonoBehaviour
         fill.color = gradient.Evaluate(1f);
     }
 
+    // Sets the current health of the object
     public void SetHealth(int health)
     {
         slider.value = health;

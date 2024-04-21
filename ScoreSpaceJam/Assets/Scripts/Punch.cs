@@ -17,6 +17,7 @@ public class Punch : MonoBehaviour
     // Update is called once per frame
     void Update()
     {
+        // Creates cooldown for attack
         if (Time.time >= nextAttackTime)
         {
             if (Input.GetKeyDown(KeyCode.Space))
@@ -44,6 +45,7 @@ public class Punch : MonoBehaviour
 
     private void OnDrawGizmos()
     {
+        // Creates visible hit box for attack
         if(attackPoint == null)
         {
             return;

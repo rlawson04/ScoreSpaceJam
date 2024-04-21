@@ -4,20 +4,6 @@ using UnityEngine;
 
 public class EnemyManager : MonoBehaviour
 {
-    //public static EnemyManager instance;
-
-    //private void Awake()
-    //{
-    //    if (instance != null && instance != this)
-    //    {
-    //        Destroy(this.gameObject);
-    //    }
-    //    else
-    //    {
-    //        instance = this;
-    //    }
-    //}
-
     // Fields
     [SerializeField]
     private GameObject enemyPrefab;
@@ -48,6 +34,7 @@ public class EnemyManager : MonoBehaviour
     // Update is called once per frame
     void Update()
     {
+        // Spawns a certain number of enemies
         if (numberSpawned < totalNumberEnemies)
         {
             for (int i = 0; i < totalNumberEnemies; i++)
@@ -56,6 +43,7 @@ public class EnemyManager : MonoBehaviour
                 numberSpawned++;
             }
         }
+        // Removes enemies who are null from the list
         for (int i = 0; i < enemyList.Count; i++)
         {
             if (enemyList[i] == null)
@@ -68,10 +56,12 @@ public class EnemyManager : MonoBehaviour
             }
             
         }
+        // Clears list once all enemies are dead
         if(numberKilled == numberSpawned)
         {
             enemyList.Clear();
         }
+        // actovates next room and destroys the current room
         if (enemyList.Count == 0)
         {
             nextRoom.SetActive(true);
@@ -79,6 +69,7 @@ public class EnemyManager : MonoBehaviour
         }
     }
 
+    // Creates an enemy at a specified location
     public void MakeEnemy()
     {
         Vector2 position = EnemyLocations();
@@ -86,16 +77,18 @@ public class EnemyManager : MonoBehaviour
         enemyList.Add(enemyPrefab);
     }
 
+    // Removes dead enemies from the list
     public void RemoveEnemy(GameObject enemy)
     {
         enemyList.Remove(enemy);
         numberKilled++;
     }
 
+    // Specifies enemy locations
     Vector2 EnemyLocations()
     {
         Vector2 enemyVector = new Vector2();
-        float radius = 2f;
+        float radius = Random.Range(1f, 3f);
         float theta = 2 * Mathf.PI / totalNumberEnemies;
         enemyVector.x = transform.position.x + Mathf.Cos(theta * numberSpawned) * radius;
         enemyVector.y = transform.position.y + Mathf.Sin(theta * numberSpawned) * radius;

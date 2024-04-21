@@ -68,6 +68,7 @@ public class Player : MonoBehaviour
         // Update health bar
         healthbar.SetHealth(health);
 
+        // Shoots crown projectile
         if (Input.GetMouseButtonDown(0))
         {
             //Instantiate(projectile, transform.position, Quaternion.identity);
@@ -98,7 +99,7 @@ public class Player : MonoBehaviour
     // Update is called once per frame
     void FixedUpdate()
     {
-        //MoveCharacter(movement);
+        // Handles player movement
         rb2D.MovePosition(rb2D.position + movement * moveSpeed * Time.fixedDeltaTime);
         
     }
@@ -109,14 +110,9 @@ public class Player : MonoBehaviour
         movement.y = Input.GetAxis("Vertical");
     }
 
-    public void MoveCharacter(Vector2 movementVector)
-    {
-        movementVector.Normalize();
-        rb2D.velocity = movementVector * moveSpeed * Time.deltaTime;
-    }
-
     public void TakeDamage(int attackDamage)
     {
+        // takes damage when hit
         health -= attackDamage;
         
     }
