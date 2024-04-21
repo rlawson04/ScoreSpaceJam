@@ -23,7 +23,10 @@ public class Player : MonoBehaviour
     private float moveSpeed = 10f;
 
     [SerializeField]
-    private uint health = 10;
+    private uint health = 100;
+
+    [SerializeField]
+    private uint attackDamage = 5;
 
     [SerializeField]
     private GameObject projectile;
@@ -43,6 +46,12 @@ public class Player : MonoBehaviour
         set { health = value; }
     }
 
+    public uint AttackDamage
+    {
+        get { return attackDamage; }
+        set { attackDamage = value; }
+    }
+
     private void Update()
     {
         GetInput();
@@ -50,9 +59,10 @@ public class Player : MonoBehaviour
         if (Input.GetMouseButtonDown(0))
         {
             //Instantiate(projectile, transform.position, Quaternion.identity);
-            ProjectileManager.instance.PlayerShootProjectile(transform.position, Camera.main.ScreenToWorldPoint(Input.mousePosition));
+            //ProjectileManager.instance.PlayerShootProjectile(transform.position, Camera.main.ScreenToWorldPoint(Input.mousePosition));
         }
 
+        // Animation handlers for each direction
         if (Input.GetKey(KeyCode.A))
         {
             animator.SetTrigger("walking");
@@ -91,6 +101,10 @@ public class Player : MonoBehaviour
     {
         movementVector.Normalize();
         rb2D.velocity = movementVector * moveSpeed * Time.deltaTime;
-        
+    }
+
+    public void TakeDamage(uint attackDamage)
+    {
+        health -= attackDamage;
     }
 }

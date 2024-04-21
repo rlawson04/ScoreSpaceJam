@@ -19,11 +19,11 @@ public class UI : MonoBehaviour
     // Update is called once per frame
     void Update()
     {
-        
+        DisplayText();
     }
 
     void DisplayText()
     {
-        healthText.text = "Health: 100";
+        healthText.text = "Health: " + Player.instance.Health + "\nCurrent damage: " + Player.instance.AttackDamage;
     }
 }

@@ -4,19 +4,19 @@ using UnityEngine;
 
 public class EnemyManager : MonoBehaviour
 {
-    public static EnemyManager instance;
+    //public static EnemyManager instance;
 
-    private void Awake()
-    {
-        if (instance != null && instance != this)
-        {
-            Destroy(this.gameObject);
-        }
-        else
-        {
-            instance = this;
-        }
-    }
+    //private void Awake()
+    //{
+    //    if (instance != null && instance != this)
+    //    {
+    //        Destroy(this.gameObject);
+    //    }
+    //    else
+    //    {
+    //        instance = this;
+    //    }
+    //}
 
     // Fields
     [SerializeField]
@@ -33,7 +33,7 @@ public class EnemyManager : MonoBehaviour
 
     int numberSpawned;
     int numberKilled;
-    float theta;
+    
 
     List<GameObject> enemyList = new List<GameObject>();
     
@@ -56,11 +56,11 @@ public class EnemyManager : MonoBehaviour
                 numberSpawned++;
             }
         }
-        foreach (GameObject enemy in enemyList)
+        for (int i = 0; i < enemyList.Count; i++)
         {
-            if(enemy == null)
+            if (enemyList[i] == null)
             {
-                RemoveEnemy(enemy);
+                RemoveEnemy(enemyList[i]);
             }
             else
             {
@@ -81,7 +81,8 @@ public class EnemyManager : MonoBehaviour
 
     public void MakeEnemy()
     {
-        enemyPrefab = Instantiate(enemyPrefab, transform.position, Quaternion.identity);
+        Vector2 position = EnemyLocations();
+        enemyPrefab = Instantiate(enemyPrefab, position, Quaternion.identity);
         enemyList.Add(enemyPrefab);
     }
 
@@ -89,6 +90,17 @@ public class EnemyManager : MonoBehaviour
     {
         enemyList.Remove(enemy);
         numberKilled++;
+    }
+
+    Vector2 EnemyLocations()
+    {
+        Vector2 enemyVector = new Vector2();
+        float radius = 2f;
+        float theta = 2 * Mathf.PI / totalNumberEnemies;
+        enemyVector.x = transform.position.x + Mathf.Cos(theta * numberSpawned) * radius;
+        enemyVector.y = transform.position.y + Mathf.Sin(theta * numberSpawned) * radius;
+
+        return enemyVector;
     }
 
 }

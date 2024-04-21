@@ -7,9 +7,9 @@ public class Punch : MonoBehaviour
     [SerializeField] private Animator animator;
 
     [SerializeField] private Transform attackPoint;
-    [SerializeField] private float attackRange = 0.5f;
+    [SerializeField] private float attackRange = 0.25f;
     [SerializeField] private LayerMask enemyLayers;
-    [SerializeField] private uint attackDamage = 5;
+    private uint attackDamage = 5;
 
     [SerializeField] private float attackRate = 2f;
     float nextAttackTime = 0f;
@@ -17,7 +17,7 @@ public class Punch : MonoBehaviour
     // Update is called once per frame
     void Update()
     {
-        if(Time.time >= nextAttackTime)
+        if (Time.time >= nextAttackTime)
         {
             if (Input.GetKeyDown(KeyCode.Space))
             {
