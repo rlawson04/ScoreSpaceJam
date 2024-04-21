@@ -5,6 +5,7 @@ using UnityEngine;
 public class Enemy : MonoBehaviour
 {
     [SerializeField] int health;
+    [SerializeField] private healthbar healthbar;
     [SerializeField] private Animator animator;
 
     [SerializeField] private float attackRange;
@@ -29,12 +30,15 @@ public class Enemy : MonoBehaviour
         attackDamage = 5;
         attackRate = 2f;
         nextAttackTime = 0f;
+        healthbar.SetMaxHealth(health);
     }
 
     // Update is called once per frame
     void Update()
     {
         float distance = Vector2.Distance(Player.instance.transform.position, transform.position);
+
+        healthbar.SetHealth(health);
 
         // Moves towards player if player is within enemy detection range
         if (distance < detectionRange)
