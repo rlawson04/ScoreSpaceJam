@@ -55,6 +55,12 @@ public class Player : MonoBehaviour
         set { attackDamage = value; }
     }
 
+    private void Start()
+    {
+        health = 100;
+        healthbar.SetMaxHealth(health);
+    }
+
     private void Update()
     {
         GetInput();
