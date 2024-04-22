@@ -35,6 +35,6 @@ public class Score : MonoBehaviour
         healthRemaining = (int)healthRemaining; ;
         finalScore = (int)finalScore;
 
-        scoreText.text = "Time: " + timer + "\nX\n" + "Health Remaining: " + healthRemaining + "\n=\n" + "Final Score" + finalScore;
+        scoreText.text = "Time: " + timer + "\nX\n" + "Health Remaining: " + healthRemaining + "\n=\n" + "Final Score: " + finalScore;
     }
 }
