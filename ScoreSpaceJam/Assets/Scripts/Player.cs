@@ -72,7 +72,7 @@ public class Player : MonoBehaviour
         if (Input.GetMouseButtonDown(0))
         {
             //Instantiate(projectile, transform.position, Quaternion.identity);
-            //ProjectileManager.instance.PlayerShootProjectile(transform.position, Camera.main.ScreenToWorldPoint(Input.mousePosition));
+            ProjectileManager.instance.PlayerShootProjectile(transform.position, Camera.main.ScreenToWorldPoint(Input.mousePosition));
         }
 
         // Animation handlers for each direction
