@@ -89,7 +89,7 @@ public class Player : MonoBehaviour
         // return to start button
         if (Input.GetKey(KeyCode.P))
         {
-            transform.position = new Vector2(2.54f, -1.14f);
+            transform.position = new Vector2(0f, 0f);
         }
 
         // Animation handlers for each direction
