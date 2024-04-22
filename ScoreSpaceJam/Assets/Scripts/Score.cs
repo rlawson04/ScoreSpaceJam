@@ -31,6 +31,10 @@ public class Score : MonoBehaviour
     public void CalculateScore()
     {
         finalScore = timer * healthRemaining;
+        timer = (int)timer;
+        healthRemaining = (int)healthRemaining; ;
+        finalScore = (int)finalScore;
+
         scoreText.text = "Time: " + timer + "\nX\n" + "Health Remaining: " + healthRemaining + "\n=\n" + "Final Score" + finalScore;
     }
 }
