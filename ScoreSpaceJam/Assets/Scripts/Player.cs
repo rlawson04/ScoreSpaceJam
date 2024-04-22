@@ -1,6 +1,8 @@
 using System.Collections;
 using System.Collections.Generic;
+using TMPro;
 using UnityEngine;
+using UnityEngine.UI;
 
 public class Player : MonoBehaviour
 {
@@ -42,6 +44,12 @@ public class Player : MonoBehaviour
 
     [SerializeField]
     private float projectileCooldown = .5f;
+
+    [SerializeField]
+    private TextMeshProUGUI deathText;
+
+    [SerializeField]
+    private GameObject deathButton;
 
     private float timer;
 
@@ -112,6 +120,13 @@ public class Player : MonoBehaviour
             animator.SetTrigger("standing");
         }
         health -= Time.deltaTime * 2;
+
+        if (health <= 0)
+        {
+            Time.timeScale = 0;
+            deathText.text = "You have died!";
+            deathButton.SetActive(true);
+        }
     }
 
     // Update is called once per frame
