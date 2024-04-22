@@ -81,16 +81,17 @@ public class LeaderBoardController : MonoBehaviour
                 
                 for (int i = 0; i < members.Length; i++)
                 {
-                    Debug.Log(members[i].player);
+                    Debug.Log(members[i].member_id);
+                    
                     tempPlayerNames += members[i].rank + ". ";
 
-                        if (members[i].player.name != "")
+                        if (members[i].member_id != "")
                         {
-                            tempPlayerNames += members[i].player.name;
+                            tempPlayerNames += members[i].member_id;
                         }
                         else
                         {
-                            tempPlayerNames += members[i].player.id;
+                            tempPlayerNames += members[i].member_id;
                         }
                         tempPlayerScores += members[i].score + "\n";
                         tempPlayerNames += "\n";
