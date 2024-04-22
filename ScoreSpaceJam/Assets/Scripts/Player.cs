@@ -130,7 +130,6 @@ public class Player : MonoBehaviour
 
         if (health <= 0)
         {
-            Time.timeScale = 0;
             deathText.text = "You have died!";
             deathButton.SetActive(true);
         }

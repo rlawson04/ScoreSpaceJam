@@ -17,7 +17,8 @@ public class LeaderBoardController : MonoBehaviour
     private void Start()
     {
         LoginRoutine();
-        playerScore = Score.finalScore; 
+        playerScore = Score.finalScore;
+        
     }
 
     private void Update()
