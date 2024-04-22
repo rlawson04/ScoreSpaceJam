@@ -34,6 +34,15 @@ public class Enemy : MonoBehaviour
     // Update is called once per frame
     void Update()
     {
+        // Making enemy face player
+        if (Player.instance.transform.position.x > transform.position.x) 
+        {
+            transform.localScale = new Vector3(-1, 1, 1);
+        }
+        else
+        {
+            transform.localScale = new Vector3(1, 1, 1);
+        }
         // Distance between player and enemy
         float distance = Vector2.Distance(Player.instance.transform.position, transform.position);
 
