@@ -1,5 +1,6 @@
 using System.Collections;
 using System.Collections.Generic;
+using TMPro;
 using UnityEngine;
 
 public class Score : MonoBehaviour
@@ -7,6 +8,7 @@ public class Score : MonoBehaviour
     float timer;
     float finalScore;
     float healthRemaining;
+    [SerializeField] private TextMeshProUGUI scoreText;
 
     // Properties
     public float FinalScore {  get { return finalScore; } }
@@ -23,10 +25,12 @@ public class Score : MonoBehaviour
     {
         timer -= Time.deltaTime;
         healthRemaining = Player.instance.Health;
+        
     }
    
     public void CalculateScore()
     {
         finalScore = timer * healthRemaining;
+        scoreText.text = "Time: " + timer + "\nX\n" + "Health Remaining: " + healthRemaining + "\n=\n" + "Final Score" + finalScore;
     }
 }
