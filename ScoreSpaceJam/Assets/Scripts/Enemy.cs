@@ -9,6 +9,10 @@ public class Enemy : MonoBehaviour
     [SerializeField] private healthbar healthbar;
     [SerializeField] private Animator animator;
     [SerializeField] private GameObject bloodpuddle;
+    [SerializeField]
+    private AudioSource hurt;
+    [SerializeField]
+    private AudioSource death;
 
     [SerializeField] private float attackRange;
     [SerializeField] private LayerMask playerLayers;
@@ -71,6 +75,7 @@ public class Enemy : MonoBehaviour
         // When the enemy dies, the object is destroyed and the player is slightly healed
         if (health <= 0)
         {
+            death.Play();
             Instantiate(bloodpuddle, transform.position, Quaternion.identity);
             Destroy(gameObject);
 
@@ -94,6 +99,7 @@ public class Enemy : MonoBehaviour
         // Decrease health when hit by player
         health -= damage;
 
+        hurt.Play();
         transform.position += new Vector3(1, 0) * transform.localScale.x/2;
         transform.position += new Vector3(0, 1) * transform.localScale.y/2;
     }

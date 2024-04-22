@@ -8,6 +8,12 @@ public class Player : MonoBehaviour
 {
     public static Player instance;
 
+    [SerializeField]
+    private AudioSource shoot;
+
+    [SerializeField]
+    private AudioSource hurt;
+
     private void Awake()
     {
         if (instance != null && instance != this)
@@ -92,6 +98,7 @@ public class Player : MonoBehaviour
             ProjectileManager.instance.PlayerShootProjectile(transform.position, Camera.main.ScreenToWorldPoint(Input.mousePosition));
             timer = projectileCooldown;
             animator.SetTrigger("Attack");
+            shoot.Play();
         }
 
         // return to start button
@@ -147,6 +154,6 @@ public class Player : MonoBehaviour
     {
         // takes damage when hit
         health -= attackDamage;
-        
+        hurt.Play();
     }
 }
