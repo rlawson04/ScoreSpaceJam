@@ -1,6 +1,7 @@
 using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
+using static UnityEngine.RuleTile.TilingRuleOutput;
 
 public class Enemy : MonoBehaviour
 {
@@ -94,6 +95,7 @@ public class Enemy : MonoBehaviour
         health -= damage;
 
         transform.position += new Vector3(1, 0) * transform.localScale.x;
+        transform.position += new Vector3(0, 1) * transform.localScale.y;
     }
 
     public void Attack()
@@ -111,6 +113,7 @@ public class Enemy : MonoBehaviour
 
             //player gets knocked back
             Player.instance.transform.position -= new Vector3(1, 0) * transform.localScale.x;
+            Player.instance.transform.position -= new Vector3(0, 1) * transform.localScale.y;
         }
     }
 }
