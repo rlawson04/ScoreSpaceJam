@@ -23,9 +23,9 @@ public class Enemy : MonoBehaviour
     void Start()
     {
         health = 10;
-        speed = Random.Range(2, 3);
+        speed = Random.Range(2, 4);
         detectionRange = 10;
-        attackRange = 0.25f;
+        attackRange = 0.5f;
         attackDamage = 5;
         attackRate = 2f;
         nextAttackTime = 0f;
@@ -108,6 +108,9 @@ public class Enemy : MonoBehaviour
         foreach (Collider2D enemy in hitPlayer)
         {
             Player.instance.TakeDamage(attackDamage);
+
+            //player gets knocked back
+            Player.instance.transform.position -= new Vector3(1, 0) * transform.localScale.x;
         }
     }
 }
