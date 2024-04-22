@@ -94,8 +94,8 @@ public class Enemy : MonoBehaviour
         // Decrease health when hit by player
         health -= damage;
 
-        transform.position += new Vector3(1, 0) * transform.localScale.x;
-        transform.position += new Vector3(0, 1) * transform.localScale.y;
+        transform.position += new Vector3(1, 0) * transform.localScale.x/2;
+        transform.position += new Vector3(0, 1) * transform.localScale.y/2;
     }
 
     public void Attack()
@@ -112,8 +112,8 @@ public class Enemy : MonoBehaviour
             Player.instance.TakeDamage(attackDamage);
 
             //player gets knocked back
-            Player.instance.transform.position -= new Vector3(1, 0) * transform.localScale.x;
-            Player.instance.transform.position -= new Vector3(0, 1) * transform.localScale.y;
+            Player.instance.transform.position -= new Vector3(1, 0) * transform.localScale.x/2;
+            Player.instance.transform.position -= new Vector3(0, 1) * transform.localScale.y/2;
         }
     }
 }
