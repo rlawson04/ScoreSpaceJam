@@ -92,7 +92,7 @@ public class Player : MonoBehaviour
         healthbar.SetHealth(health);
 
         // Shoots crown projectile
-        if (Input.GetMouseButtonDown(0) && timer <= 0)
+        if (Input.GetKeyDown(KeyCode.Space) && timer <= 0)
         {
             //Instantiate(projectile, transform.position, Quaternion.identity);
             ProjectileManager.instance.PlayerShootProjectile(transform.position, Camera.main.ScreenToWorldPoint(Input.mousePosition));

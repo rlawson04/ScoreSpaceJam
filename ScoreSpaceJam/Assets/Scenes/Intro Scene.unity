@@ -1914,7 +1914,7 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   MemberID: {fileID: 1029042640}
-  PlayerScore: {fileID: 460755795}
+  playerScore: 0
   leaderboardKey: 21716
   playerNames: {fileID: 1166883779}
   playerScores: {fileID: 1350083468}
@@ -2713,7 +2713,7 @@ MonoBehaviour:
 
 
     Crown
-    Throw ---- Right Mouse Button
+    Throw ---- "Space"
 
 
     Respawn ---- "P"

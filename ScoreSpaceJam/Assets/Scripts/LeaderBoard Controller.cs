@@ -7,7 +7,8 @@ using System.Collections.Generic;
 
 public class LeaderBoardController : MonoBehaviour
 {
-    public TMP_InputField MemberID, PlayerScore;
+    public TMP_InputField MemberID;
+    public float playerScore;
     public string leaderboardKey;
     public TextMeshProUGUI playerNames;
     public TextMeshProUGUI playerScores;
@@ -16,6 +17,7 @@ public class LeaderBoardController : MonoBehaviour
     private void Start()
     {
         LoginRoutine();
+        playerScore = Score.finalScore; 
     }
 
     private void Update()
@@ -44,13 +46,12 @@ public class LeaderBoardController : MonoBehaviour
                 Debug.Log("Fail");
             }
         });
-       
     }
 
     // Pushes the score entered into the loot locker api
     public void SubmitScore()
     {
-        LootLockerSDKManager.SubmitScore(MemberID.text, int.Parse(PlayerScore.text), leaderboardKey, (response) =>
+        LootLockerSDKManager.SubmitScore(MemberID.text, (int)playerScore, leaderboardKey, (response) =>
         {
             if (response.success)
             {
