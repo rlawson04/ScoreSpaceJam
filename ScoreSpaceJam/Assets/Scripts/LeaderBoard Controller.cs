@@ -81,9 +81,8 @@ public class LeaderBoardController : MonoBehaviour
                 
                 for (int i = 0; i < members.Length; i++)
                 {
-                    if (members[i].player != null)
-                    {
-                        tempPlayerNames += members[i].rank + ". ";
+                    Debug.Log(members[i].player);
+                    tempPlayerNames += members[i].rank + ". ";
 
                         if (members[i].player.name != "")
                         {
@@ -95,7 +94,7 @@ public class LeaderBoardController : MonoBehaviour
                         }
                         tempPlayerScores += members[i].score + "\n";
                         tempPlayerNames += "\n";
-                    }
+                    
                     
                 }
                 done = true;
