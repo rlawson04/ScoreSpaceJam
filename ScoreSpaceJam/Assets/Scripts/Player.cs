@@ -83,6 +83,7 @@ public class Player : MonoBehaviour
             //Instantiate(projectile, transform.position, Quaternion.identity);
             ProjectileManager.instance.PlayerShootProjectile(transform.position, Camera.main.ScreenToWorldPoint(Input.mousePosition));
             timer = projectileCooldown;
+            animator.SetTrigger("Attack");
         }
 
         // return to start button
