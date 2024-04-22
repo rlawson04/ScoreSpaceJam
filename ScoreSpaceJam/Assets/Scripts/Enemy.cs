@@ -7,6 +7,7 @@ public class Enemy : MonoBehaviour
     [SerializeField] int health;
     [SerializeField] private healthbar healthbar;
     [SerializeField] private Animator animator;
+    [SerializeField] private GameObject bloodpuddle;
 
     [SerializeField] private float attackRange;
     [SerializeField] private LayerMask playerLayers;
@@ -22,7 +23,7 @@ public class Enemy : MonoBehaviour
     void Start()
     {
         health = 10;
-        speed = 1;
+        speed = Random.Range(2, 3);
         detectionRange = 10;
         attackRange = 0.25f;
         attackDamage = 5;
@@ -69,6 +70,7 @@ public class Enemy : MonoBehaviour
         // When the enemy dies, the object is destroyed and the player is slightly healed
         if (health <= 0)
         {
+            Instantiate(bloodpuddle, transform.position, Quaternion.identity);
             Destroy(gameObject);
 
             // Regenerate player health capped at 100
@@ -80,7 +82,7 @@ public class Enemy : MonoBehaviour
                 }
                 else
                 {
-                    Player.instance.Health += 2;
+                    Player.instance.Health += 5;
                 }
             }
         }
@@ -90,6 +92,8 @@ public class Enemy : MonoBehaviour
     {
         // Decrease health when hit by player
         health -= damage;
+
+        transform.position += new Vector3(1, 0) * transform.localScale.x;
     }
 
     public void Attack()

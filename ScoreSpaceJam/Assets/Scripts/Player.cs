@@ -23,7 +23,7 @@ public class Player : MonoBehaviour
     private float moveSpeed = 10f;
 
     [SerializeField]
-    private int health = 100;
+    private float health = 100;
 
     [SerializeField]
     private int attackDamage = 5;
@@ -43,7 +43,7 @@ public class Player : MonoBehaviour
     Vector2 movement = new Vector2();
 
     // Properties
-    public int Health
+    public float Health
     {
         get { return health; }
         set { health = value; }
@@ -94,6 +94,7 @@ public class Player : MonoBehaviour
         {
             animator.SetTrigger("standing");
         }
+        health -= Time.deltaTime * 2;
     }
 
     // Update is called once per frame
