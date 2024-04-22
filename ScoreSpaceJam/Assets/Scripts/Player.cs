@@ -40,6 +40,11 @@ public class Player : MonoBehaviour
     [SerializeField]
     private healthbar healthbar;
 
+    [SerializeField]
+    private float projectileCooldown = .5f;
+
+    private float timer;
+
     Vector2 movement = new Vector2();
 
     // Properties
@@ -57,6 +62,7 @@ public class Player : MonoBehaviour
 
     private void Start()
     {
+        timer = projectileCooldown;
         health = 100;
         healthbar.SetMaxHealth(health);
     }
@@ -65,14 +71,24 @@ public class Player : MonoBehaviour
     {
         GetInput();
 
+        timer -= Time.deltaTime;
+
+
         // Update health bar
         healthbar.SetHealth(health);
 
         // Shoots crown projectile
-        if (Input.GetMouseButtonDown(0))
+        if (Input.GetMouseButtonDown(0) && timer <= 0)
         {
             //Instantiate(projectile, transform.position, Quaternion.identity);
             ProjectileManager.instance.PlayerShootProjectile(transform.position, Camera.main.ScreenToWorldPoint(Input.mousePosition));
+            timer = projectileCooldown;
+        }
+
+        // return to start button
+        if (Input.GetKey(KeyCode.P))
+        {
+            transform.position = new Vector2(2.54f, -1.14f);
         }
 
         // Animation handlers for each direction
