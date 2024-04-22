@@ -6,7 +6,7 @@ using UnityEngine;
 public class Score : MonoBehaviour
 {
     float timer;
-    float finalScore;
+    public static float finalScore;
     float healthRemaining;
     [SerializeField] private TextMeshProUGUI scoreText;
 

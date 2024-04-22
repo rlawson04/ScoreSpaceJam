@@ -20,7 +20,7 @@ public class Punch : MonoBehaviour
         // Creates cooldown for attack
         if (Time.time >= nextAttackTime)
         {
-            if (Input.GetKeyDown(KeyCode.Space))
+            if (Input.GetMouseButtonDown(0))
             {
                 Attack();
                 nextAttackTime = Time.time + 1f / attackRate;
